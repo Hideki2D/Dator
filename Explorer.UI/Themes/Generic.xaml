@@ -12,8 +12,6 @@
 
         <ResourceDictionary Source="/Explorer.UI;component/Controls/Layout/ShellLayout.xaml"/>
         <ResourceDictionary Source="/Explorer.UI;component/Themes/Controls/ExplorerNavigation.xaml"/>
-        <!--<ResourceDictionary Source="/Explorer.UI;component/Themes/Controls/ExplorerNavigation.xaml"/>-->
-
 
     </ResourceDictionary.MergedDictionaries>
 

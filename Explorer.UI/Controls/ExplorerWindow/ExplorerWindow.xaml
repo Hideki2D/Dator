@@ -6,82 +6,62 @@
 
     <layout:ShellLayout>
 
-        <!-- ===================================================== -->
-        <!-- Toolbar -->
-        <!-- ===================================================== -->
-
         <layout:ShellLayout.ToolbarContent>
-
             <Grid Height="40">
-
                 <TextBlock
                     VerticalAlignment="Center"
                     FontSize="18"
                     FontWeight="SemiBold"
                     Text="Explorer"/>
-
             </Grid>
-
         </layout:ShellLayout.ToolbarContent>
 
-        <!-- ===================================================== -->
-        <!-- Address -->
-        <!-- ===================================================== -->
-
         <layout:ShellLayout.AddressBarContent>
-
             <Border
                 Height="36"
                 Background="{DynamicResource ControlBackgroundBrush}"
                 BorderBrush="{DynamicResource ControlBorderBrush}"
                 BorderThickness="1"
                 CornerRadius="8">
-
                 <TextBlock
                     Margin="12,0"
                     VerticalAlignment="Center"
-                    Text="C:\"/>
-
+                    Text="{Binding CurrentPath}"/>
             </Border>
-
         </layout:ShellLayout.AddressBarContent>
 
-        <!-- ===================================================== -->
-        <!-- Navigation -->
-        <!-- ===================================================== -->
-
         <layout:ShellLayout.NavigationContent>
-
-            <ui:ExplorerNavigation/>
-
+            <ui:ExplorerNavigation
+                ItemsSource="{Binding NavigationRoots}"
+                SelectedItem="{Binding SelectedNavigationItem, Mode=TwoWay}"/>
         </layout:ShellLayout.NavigationContent>
 
-        <!-- ===================================================== -->
-        <!-- Main -->
-        <!-- ===================================================== -->
-
         <layout:ShellLayout.MainContent>
+            <ListBox
+                Background="Transparent"
+                BorderThickness="0"
+                ItemsSource="{Binding Items}">
 
-            <Grid>
+                <ListBox.InputBindings>
+                    <MouseBinding
+                        Gesture="LeftDoubleClick"
+                        Command="{Binding SelectedItem.OpenCommand, RelativeSource={RelativeSource Self}}"/>
+                </ListBox.InputBindings>
 
-                <TextBlock
-                    FontSize="24"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Text="Explorer Content"/>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="2">
+                            <Image Source="{Binding Icon}" Width="20" Height="20" Margin="0,0,8,0"/>
+                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
 
-            </Grid>
-
+            </ListBox>
         </layout:ShellLayout.MainContent>
 
-        <!-- ===================================================== -->
-        <!-- Status -->
-        <!-- ===================================================== -->
-
         <layout:ShellLayout.StatusBarContent>
-
-            <TextBlock Text="0 items"/>
-
+            <TextBlock Text="{Binding Items.Count, StringFormat={}{0} элементов}"/>
         </layout:ShellLayout.StatusBarContent>
 
     </layout:ShellLayout>

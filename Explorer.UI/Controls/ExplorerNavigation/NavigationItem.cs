@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace Explorer.UI.Controls;
@@ -15,6 +16,7 @@ public class NavigationItem : INotifyPropertyChanged
     private bool _isExpanded;
     private bool _isSelected;
     private bool _isEnabled = true;
+    private bool _childrenLoaded;
 
     public string Title
     {
@@ -31,7 +33,14 @@ public class NavigationItem : INotifyPropertyChanged
     public bool IsExpanded
     {
         get => _isExpanded;
-        set => SetField(ref _isExpanded, value);
+        set
+        {
+            if (SetField(ref _isExpanded, value) && value && !_childrenLoaded)
+            {
+                _childrenLoaded = true;
+                _ = LoadChildren?.Invoke(this);
+            }
+        }
     }
 
     public bool IsSelected
@@ -47,6 +56,13 @@ public class NavigationItem : INotifyPropertyChanged
     }
 
     public object? Tag { get; set; }
+
+    /// <summary>
+    /// Вызывается один раз при первом разворачивании узла — сюда Explorer
+    /// подставляет свою логику чтения файловой системы, чтобы этот проект
+    /// (Explorer.UI) не знал про System.IO.
+    /// </summary>
+    public Func<NavigationItem, Task>? LoadChildren { get; set; }
 
     public ObservableCollection<NavigationItem> Items { get; } = new();
 

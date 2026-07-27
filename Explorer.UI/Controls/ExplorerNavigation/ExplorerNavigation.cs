@@ -3,8 +3,13 @@ using System.Windows.Controls;
 
 namespace Explorer.UI.Controls.ExplorerNavigation;
 
+[TemplatePart(Name = PartTreeView, Type = typeof(TreeView))]
 public class ExplorerNavigation : Control
 {
+    public const string PartTreeView = "PART_TreeView";
+
+    private TreeView? _treeView;
+
     static ExplorerNavigation()
     {
         DefaultStyleKeyProperty.OverrideMetadata(
@@ -38,5 +43,23 @@ public class ExplorerNavigation : Control
     {
         get => GetValue(SelectedItemProperty);
         set => SetValue(SelectedItemProperty, value);
+    }
+
+    public override void OnApplyTemplate()
+    {
+        base.OnApplyTemplate();
+
+        if (_treeView != null)
+            _treeView.SelectedItemChanged -= OnTreeViewSelectedItemChanged;
+
+        _treeView = GetTemplateChild(PartTreeView) as TreeView;
+
+        if (_treeView != null)
+            _treeView.SelectedItemChanged += OnTreeViewSelectedItemChanged;
+    }
+
+    private void OnTreeViewSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+    {
+        SelectedItem = e.NewValue;
     }
 }
