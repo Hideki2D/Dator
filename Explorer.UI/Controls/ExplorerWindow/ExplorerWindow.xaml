@@ -38,15 +38,16 @@
 
         <layout:ShellLayout.MainContent>
             <ListBox
-                Background="Transparent"
-                BorderThickness="0"
-                ItemsSource="{Binding Items}">
+        x:Name="FileList"
+        Background="Transparent"
+        BorderThickness="0"
+        ItemsSource="{Binding Items}">
 
-                <ListBox.InputBindings>
-                    <MouseBinding
-                        Gesture="LeftDoubleClick"
-                        Command="{Binding SelectedItem.OpenCommand, RelativeSource={RelativeSource Self}}"/>
-                </ListBox.InputBindings>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <EventSetter Event="MouseDoubleClick" Handler="FileListItem_MouseDoubleClick"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
 
                 <ListBox.ItemTemplate>
                     <DataTemplate>

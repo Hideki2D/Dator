@@ -15,4 +15,10 @@
 
     </ResourceDictionary.MergedDictionaries>
 
+    <!-- Базовый текстовый цвет для всего приложения -->
+    <Style TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="{DynamicResource ControlForegroundBrush}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>
+    </Style>
+
 </ResourceDictionary>
