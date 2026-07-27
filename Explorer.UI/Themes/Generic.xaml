@@ -1,0 +1,20 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+
+        <!-- Themes -->
+
+        <ResourceDictionary Source="/Explorer.UI;component/Resources/Common.xaml"/>
+
+        <!-- Controls -->
+
+        <ResourceDictionary Source="/Explorer.UI;component/Controls/Layout/ShellLayout.xaml"/>
+        <ResourceDictionary Source="/Explorer.UI;component/Themes/Controls/ExplorerNavigation.xaml"/>
+        <!--<ResourceDictionary Source="/Explorer.UI;component/Themes/Controls/ExplorerNavigation.xaml"/>-->
+
+
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

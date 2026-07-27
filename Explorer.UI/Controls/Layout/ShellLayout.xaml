@@ -1,0 +1,130 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Explorer.UI.Controls.Layout">
+
+    <Style TargetType="{x:Type controls:ShellLayout}">
+
+        <Setter Property="Background"
+                Value="{DynamicResource WindowBackgroundBrush}" />
+
+        <Setter Property="Focusable"
+                Value="False" />
+
+        <Setter Property="Template">
+
+            <Setter.Value>
+
+                <ControlTemplate TargetType="{x:Type controls:ShellLayout}">
+
+                    <Border Background="{TemplateBinding Background}">
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+
+                                <RowDefinition Height="Auto"/>
+
+                                <RowDefinition Height="Auto"/>
+
+                                <RowDefinition Height="*"/>
+
+                                <RowDefinition Height="Auto"/>
+
+                            </Grid.RowDefinitions>
+
+                            <!-- Toolbar -->
+
+                            <Border
+                                Grid.Row="0"
+                                Background="{DynamicResource ControlBackgroundBrush}"
+                                BorderBrush="{DynamicResource ControlBorderBrush}"
+                                BorderThickness="0,0,0,1">
+
+                                <ContentPresenter
+                                    x:Name="PART_Toolbar"
+                                    Margin="12,8"
+                                    Content="{TemplateBinding ToolbarContent}" />
+
+                            </Border>
+
+                            <!-- Address -->
+
+                            <Border
+                                Grid.Row="1"
+                                Background="{DynamicResource ControlBackgroundBrush}"
+                                BorderBrush="{DynamicResource ControlBorderBrush}"
+                                BorderThickness="0,0,0,1">
+
+                                <ContentPresenter
+                                    x:Name="PART_AddressBar"
+                                    Margin="12,8"
+                                    Content="{TemplateBinding AddressBarContent}" />
+
+                            </Border>
+
+                            <!-- Main -->
+
+                            <Grid Grid.Row="2">
+
+                                <Grid.ColumnDefinitions>
+
+                                    <ColumnDefinition Width="260"/>
+
+                                    <ColumnDefinition Width="*"/>
+
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Navigation -->
+
+                                <Border
+                                    Grid.Column="0"
+                                    Background="{DynamicResource ControlBackgroundBrush}"
+                                    BorderBrush="{DynamicResource ControlBorderBrush}"
+                                    BorderThickness="0,0,1,0">
+
+                                    <ContentPresenter
+                                        x:Name="PART_Navigation"
+                                        Margin="8"
+                                        Content="{TemplateBinding NavigationContent}" />
+
+                                </Border>
+
+                                <!-- Main Content -->
+
+                                <ContentPresenter
+                                    x:Name="PART_MainContent"
+                                    Grid.Column="1"
+                                    Margin="12"
+                                    Content="{TemplateBinding MainContent}" />
+
+                            </Grid>
+
+                            <!-- Status -->
+
+                            <Border
+                                Grid.Row="3"
+                                Background="{DynamicResource ControlBackgroundBrush}"
+                                BorderBrush="{DynamicResource ControlBorderBrush}"
+                                BorderThickness="0,1,0,0">
+
+                                <ContentPresenter
+                                    x:Name="PART_StatusBar"
+                                    Margin="12,6"
+                                    Content="{TemplateBinding StatusBarContent}" />
+
+                            </Border>
+
+                        </Grid>
+
+                    </Border>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+
+    </Style>
+
+</ResourceDictionary>

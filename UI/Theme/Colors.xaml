@@ -1,0 +1,67 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Background -->
+
+    <Color x:Key="Color.Background">
+        #202020
+    </Color>
+
+    <Color x:Key="Color.Surface">
+        #2B2B2B
+    </Color>
+
+    <Color x:Key="Color.Surface2">
+        #323232
+    </Color>
+
+    <!-- Border -->
+
+    <Color x:Key="Color.Border">
+        #404040
+    </Color>
+
+    <!-- Text -->
+
+    <Color x:Key="Color.Text">
+        #FFFFFF
+    </Color>
+
+    <Color x:Key="Color.TextSecondary">
+        #B7B7B7
+    </Color>
+
+    <!-- Accent -->
+
+    <Color x:Key="Color.Accent">
+        #3B82F6
+    </Color>
+
+    <Color x:Key="Color.AccentHover">
+        #4A90FF
+    </Color>
+
+    <Color x:Key="Color.AccentPressed">
+        #2F6ED5
+    </Color>
+
+    <!-- States -->
+
+    <Color x:Key="Color.Hover">
+        #373737
+    </Color>
+
+    <Color x:Key="Color.Pressed">
+        #444444
+    </Color>
+
+    <Color x:Key="Color.Selected">
+        #315FAF
+    </Color>
+
+    <Color x:Key="Color.SelectedInactive">
+        #4B4B4B
+    </Color>
+
+</ResourceDictionary>

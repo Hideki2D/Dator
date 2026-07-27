@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Explorer.UI/Explorer.UI.csproj" Id="618f06a3-e9f2-4f80-95b9-3e9945b20b7f" />
+  <Project Path="Explorer/Explorer.csproj" />
+</Solution>
