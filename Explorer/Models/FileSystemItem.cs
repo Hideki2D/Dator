@@ -15,8 +15,9 @@ public class FileSystemItem
 
     public bool IsDrive { get; init; }
 
-    /// <summary>
-    /// Двойной клик по элементу. Null для обычных файлов (пока не реализовано открытие).
-    /// </summary>
+    /// <summary>Двойной клик без модификаторов.</summary>
     public ICommand? OpenCommand { get; set; }
+
+    /// <summary>Ctrl + двойной клик — открыть окно выбора приложения.</summary>
+    public ICommand? OpenWithCommand { get; set; }
 }

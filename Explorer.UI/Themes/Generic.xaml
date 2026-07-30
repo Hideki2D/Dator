@@ -4,18 +4,13 @@
 
     <ResourceDictionary.MergedDictionaries>
 
-        <!-- Themes -->
-
         <ResourceDictionary Source="/Explorer.UI;component/Resources/Common.xaml"/>
-
-        <!-- Controls -->
-
+        <ResourceDictionary Source="/Explorer.UI;component/Styles/Button/Button.Base.xaml"/>
         <ResourceDictionary Source="/Explorer.UI;component/Controls/Layout/ShellLayout.xaml"/>
         <ResourceDictionary Source="/Explorer.UI;component/Themes/Controls/ExplorerNavigation.xaml"/>
 
     </ResourceDictionary.MergedDictionaries>
 
-    <!-- Базовый текстовый цвет для всего приложения -->
     <Style TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="{DynamicResource ControlForegroundBrush}"/>
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}"/>

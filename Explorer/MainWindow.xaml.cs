@@ -1,4 +1,5 @@
 ﻿using Explorer.ViewModels;
+using Explorer.Views;
 using System.Windows;
 
 namespace Explorer
@@ -12,7 +13,14 @@ namespace Explorer
             InitializeComponent();
 
             DataContext = _viewModel;
+            _viewModel.OpenWithRequested += OnOpenWithRequested;
             _viewModel.LoadDrives();
+        }
+
+        private void OnOpenWithRequested(string filePath)
+        {
+            var window = new OpenWithWindow(filePath) { Owner = this };
+            window.ShowDialog();
         }
     }
 }

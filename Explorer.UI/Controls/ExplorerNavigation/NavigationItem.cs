@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -6,9 +7,6 @@ using System.Windows.Media;
 
 namespace Explorer.UI.Controls;
 
-/// <summary>
-/// Represents a single item displayed in the NavigationView.
-/// </summary>
 public class NavigationItem : INotifyPropertyChanged
 {
     private string _title = string.Empty;
@@ -35,11 +33,8 @@ public class NavigationItem : INotifyPropertyChanged
         get => _isExpanded;
         set
         {
-            if (SetField(ref _isExpanded, value) && value && !_childrenLoaded)
-            {
-                _childrenLoaded = true;
-                _ = LoadChildren?.Invoke(this);
-            }
+            if (SetField(ref _isExpanded, value) && value)
+                _ = EnsureChildrenLoadedAsync();
         }
     }
 
@@ -58,13 +53,27 @@ public class NavigationItem : INotifyPropertyChanged
     public object? Tag { get; set; }
 
     /// <summary>
-    /// Вызывается один раз при первом разворачивании узла — сюда Explorer
-    /// подставляет свою логику чтения файловой системы, чтобы этот проект
-    /// (Explorer.UI) не знал про System.IO.
+    /// Explorer подставляет сюда логику чтения файловой системы —
+    /// этот проект (Explorer.UI) про System.IO ничего не знает.
     /// </summary>
     public Func<NavigationItem, Task>? LoadChildren { get; set; }
 
     public ObservableCollection<NavigationItem> Items { get; } = new();
+
+    /// <summary>
+    /// Подгружает дочерние узлы один раз (если ещё не загружены).
+    /// Можно вызывать вручную — не обязательно через разворачивание в UI.
+    /// </summary>
+    public async Task EnsureChildrenLoadedAsync()
+    {
+        if (_childrenLoaded)
+            return;
+
+        _childrenLoaded = true;
+
+        if (LoadChildren != null)
+            await LoadChildren(this);
+    }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

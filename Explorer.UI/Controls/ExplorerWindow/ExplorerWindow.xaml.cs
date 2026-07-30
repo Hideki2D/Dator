@@ -16,7 +16,11 @@ public partial class ExplorerWindow : UserControl
         if (sender is not FrameworkElement { DataContext: { } item })
             return;
 
-        var property = item.GetType().GetProperty("OpenCommand");
+        var propertyName = Keyboard.Modifiers.HasFlag(ModifierKeys.Control)
+            ? "OpenWithCommand"
+            : "OpenCommand";
+
+        var property = item.GetType().GetProperty(propertyName);
 
         if (property?.GetValue(item) is ICommand command && command.CanExecute(null))
             command.Execute(null);
